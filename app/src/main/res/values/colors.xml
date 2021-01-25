@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+<!--    <color name="primary">#37474f</color>-->
+<!--    <color name="primaryLight">#62727b</color>-->
+<!--    <color name="primaryDark">#102027</color>-->
+
+    <color name="primary">#e1bee7</color>
+    <color name="primaryLight">#fff1ff</color>
+    <color name="primaryDark">#af8eb5</color>
+
+
+    <color name="primaryDark30">#4d102027</color>
+    <color name="primaryDark50">#80102027</color>
+</resources>
