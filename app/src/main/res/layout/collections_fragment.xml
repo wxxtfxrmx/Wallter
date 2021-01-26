@@ -31,19 +31,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/collectionsTitle" />
 
-    <com.wxxtfxrmx.wallter.view.GlassBottomNavigationView
-        android:id="@+id/navigation"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:labelVisibilityMode="unlabeled"
-        app:itemIconTint="@color/primaryDark30"
-        app:menu="@menu/bottom_navigation_menu" />
+    <include layout="@layout/bottom_navigation_layout" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
