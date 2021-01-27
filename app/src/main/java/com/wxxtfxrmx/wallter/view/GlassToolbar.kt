@@ -82,6 +82,10 @@ class GlassToolbar @JvmOverloads constructor(
         onAddSearchClickListener = listener
     }
 
+    fun setTitle(title: String) {
+        this.title.text = title
+    }
+
     private fun applyState(toolbarState: ToolbarState) {
         when (toolbarState) {
             EmptySearchQueryState -> {

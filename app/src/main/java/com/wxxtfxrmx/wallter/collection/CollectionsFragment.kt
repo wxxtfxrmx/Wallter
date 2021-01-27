@@ -8,10 +8,13 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wxxtfxrmx.wallter.R
+import com.wxxtfxrmx.wallter.Router
 import com.wxxtfxrmx.wallter.drawable.SpaceDrawable
 import com.wxxtfxrmx.wallter.extension.dp
+import com.wxxtfxrmx.wallter.extension.router
 import com.wxxtfxrmx.wallter.extension.viewModels
 import com.wxxtfxrmx.wallter.view.EmptySearchQueryState
+import com.wxxtfxrmx.wallter.view.GlassBottomNavigationView
 import com.wxxtfxrmx.wallter.view.GlassToolbar
 import com.wxxtfxrmx.wallter.view.SearchInputState
 
@@ -23,6 +26,7 @@ class CollectionsFragment : Fragment(R.layout.collections_fragment) {
     }
 
     private val viewModel: CollectionsViewModel by viewModels()
+    private val router: Router by router()
 
     private lateinit var adapter: CollectionsAdapter
 
@@ -42,6 +46,7 @@ class CollectionsFragment : Fragment(R.layout.collections_fragment) {
         )
 
         val toolbar = view.findViewById<GlassToolbar>(R.id.toolbar)
+        toolbar.setTitle("Collection")
 
         toolbar.setOnSearchIconClickListener {
             toolbar.state = SearchInputState
@@ -60,6 +65,16 @@ class CollectionsFragment : Fragment(R.layout.collections_fragment) {
 
         viewModel.collections.observe(viewLifecycleOwner) {
             adapter.collections = it
+        }
+
+        val navigation = view.findViewById<GlassBottomNavigationView>(R.id.navigation)
+        navigation.setOnNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.collections -> router.openCollections()
+                R.id.photos -> router.openPhotos()
+            }
+
+            true
         }
 
         viewModel.loadCollections()

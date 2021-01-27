@@ -3,6 +3,7 @@ package com.wxxtfxrmx.wallter
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.wxxtfxrmx.wallter.collection.CollectionsFragment
+import com.wxxtfxrmx.wallter.photo.PhotosFragment
 import com.wxxtfxrmx.wallter.provider.CollectionApiProvider
 import com.wxxtfxrmx.wallter.provider.CollectionInteractorProvider
 import com.wxxtfxrmx.wallter.provider.HttpClientProvider
@@ -10,7 +11,7 @@ import com.wxxtfxrmx.wallter.provider.JsonProvider
 import com.wxxtfxrmx.wallter.viewmodel.WallterViewModelFactory
 import kotlinx.serialization.json.Json
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), Router {
 
     private val jsonProvider = JsonProvider(provideJson())
     private val httpClientProvider = HttpClientProvider(jsonProvider)
@@ -22,10 +23,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        supportFragmentManager
-            .beginTransaction()
-            .replace(R.id.container, CollectionsFragment.newInstance())
-            .commit()
+        openCollections()
     }
 
     private fun provideJson(): Json =
@@ -34,4 +32,18 @@ class MainActivity : AppCompatActivity() {
             isLenient = true
             encodeDefaults = false
         }
+
+    override fun openCollections() {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.container, CollectionsFragment.newInstance())
+            .commit()
+    }
+
+    override fun openPhotos() {
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.container, PhotosFragment.newInstance())
+            .commit()
+    }
 }
