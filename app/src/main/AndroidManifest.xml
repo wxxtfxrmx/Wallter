@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Wallter">
 
-        <activity android:name=".MainActivity">
+        <activity
+            android:name=".MainActivity"
+            android:windowSoftInputMode="adjustPan|adjustResize">
             <intent-filter>
                 <category android:name="android.intent.category.LAUNCHER" />
                 <action android:name="android.intent.action.MAIN" />

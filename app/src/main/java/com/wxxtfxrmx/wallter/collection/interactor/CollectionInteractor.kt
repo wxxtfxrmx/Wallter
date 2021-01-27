@@ -9,4 +9,8 @@ class CollectionInteractor(
 
     suspend fun getCollection(): List<Collection> =
         collectionApi.getCollection()
+
+    suspend fun searchCollection(query: String): List<Collection> =
+        collectionApi.searchCollection(query)
+
 }

@@ -12,10 +12,13 @@ import io.ktor.client.request.*
 import kotlinx.serialization.json.Json
 import okhttp3.logging.HttpLoggingInterceptor
 
-class CollectionApiProvider(private val httpClientProvider: HttpClientProvider) {
+class CollectionApiProvider(
+    private val httpClientProvider: HttpClientProvider,
+    private val jsonProvider: JsonProvider,
+) {
 
     operator fun invoke(): CollectionApi =
-        CollectionApi(httpClientProvider())
+        CollectionApi(jsonProvider(), httpClientProvider())
 }
 
 class CollectionInteractorProvider(private val apiProvider: CollectionApiProvider) {

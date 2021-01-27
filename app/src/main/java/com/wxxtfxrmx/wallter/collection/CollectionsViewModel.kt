@@ -1,6 +1,5 @@
 package com.wxxtfxrmx.wallter.collection
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -19,7 +18,12 @@ class CollectionsViewModel(
     fun loadCollections() {
         viewModelScope.launch {
             _collections.value = collectionInteractor.getCollection()
-            Log.d(this::class.simpleName, "Collections value ${collections.value}")
+        }
+    }
+
+    fun search(query: String) {
+        viewModelScope.launch {
+            _collections.value = collectionInteractor.searchCollection(query)
         }
     }
 }

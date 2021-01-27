@@ -14,7 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     private val jsonProvider = JsonProvider(provideJson())
     private val httpClientProvider = HttpClientProvider(jsonProvider)
-    private val apiProvider = CollectionApiProvider(httpClientProvider)
+    private val apiProvider = CollectionApiProvider(httpClientProvider, jsonProvider)
     private val collectionInteractorProvider = CollectionInteractorProvider(apiProvider)
     val viewModelProviderFactory = WallterViewModelFactory(collectionInteractorProvider)
 
