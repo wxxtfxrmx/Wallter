@@ -37,7 +37,7 @@ class CollectionsFragment : Fragment(R.layout.collections_fragment) {
             orientation = LinearLayoutManager.HORIZONTAL
         }
 
-        adapter = CollectionsAdapter()
+        adapter = CollectionsAdapter(viewModel::updateCollection)
         collectionList.adapter = adapter
         collectionList.addItemDecoration(
             DividerItemDecoration(context, DividerItemDecoration.HORIZONTAL).also {
@@ -65,6 +65,10 @@ class CollectionsFragment : Fragment(R.layout.collections_fragment) {
 
         viewModel.collections.observe(viewLifecycleOwner) {
             adapter.collections = it
+        }
+
+        viewModel.updateCollectionEvent.observe(viewLifecycleOwner) {
+            adapter.notifyDataSetChanged()
         }
 
         val navigation = view.findViewById<GlassBottomNavigationView>(R.id.navigation)

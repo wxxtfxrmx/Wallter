@@ -41,7 +41,6 @@ class GlassToolbar @JvmOverloads constructor(
 
     init {
         inflate(context, R.layout.toolbar_search_layout, this)
-        background = glass
 
         title = findViewById(R.id.title)
         searchIcon = findViewById(R.id.searchIcon)

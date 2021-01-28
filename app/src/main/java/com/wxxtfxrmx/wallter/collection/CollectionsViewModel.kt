@@ -15,6 +15,9 @@ class CollectionsViewModel(
     private val _collections = MutableLiveData<List<Collection>>()
     val collections: LiveData<List<Collection>> = _collections
 
+    private val _updateCollectionEvent = MutableLiveData<Unit>()
+    val updateCollectionEvent: LiveData<Unit> = _updateCollectionEvent
+
     fun loadCollections() {
         viewModelScope.launch {
             _collections.value = collectionInteractor.getCollection()
@@ -25,5 +28,11 @@ class CollectionsViewModel(
         viewModelScope.launch {
             _collections.value = collectionInteractor.searchCollection(query)
         }
+    }
+
+    fun updateCollection(collection: Collection) {
+        collection.liked = !collection.liked
+
+        _updateCollectionEvent.value = Unit
     }
 }
