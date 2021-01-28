@@ -14,13 +14,15 @@
             style="@style/TextAppearance.MaterialComponents.Headline6"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:maxLines="1"
             android:paddingStart="16dp"
             android:paddingTop="16dp"
             android:paddingEnd="16dp"
-            android:text="Sunset"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_goneMarginTop="16dp" />
 
         <TextView
             android:id="@+id/disclaimer"
@@ -29,19 +31,20 @@
             android:layout_height="wrap_content"
             android:paddingStart="16dp"
             android:paddingEnd="16dp"
-            android:text="by Timofey Bystrov"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/category" />
 
         <ImageView
+            android:id="@+id/"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+        <ImageView
             android:id="@+id/cover"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:paddingStart="16dp"
             android:paddingTop="16dp"
-            android:paddingEnd="16dp"
-            android:paddingBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

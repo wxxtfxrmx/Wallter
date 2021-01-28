@@ -70,7 +70,7 @@ class CollectionsFragment : Fragment(R.layout.collections_fragment) {
         val navigation = view.findViewById<GlassBottomNavigationView>(R.id.navigation)
         navigation.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.collections -> router.openCollections()
+                R.id.collections -> Unit
                 R.id.photos -> router.openPhotos()
             }
 

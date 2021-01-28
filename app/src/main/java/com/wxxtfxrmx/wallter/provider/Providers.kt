@@ -3,6 +3,8 @@ package com.wxxtfxrmx.wallter.provider
 import com.wxxtfxrmx.wallter.BuildConfig
 import com.wxxtfxrmx.wallter.collection.api.CollectionApi
 import com.wxxtfxrmx.wallter.collection.interactor.CollectionInteractor
+import com.wxxtfxrmx.wallter.photo.api.PhotoApi
+import com.wxxtfxrmx.wallter.photo.interactor.PhotosInteractor
 import io.ktor.client.*
 import io.ktor.client.engine.okhttp.*
 import io.ktor.client.features.*
@@ -19,6 +21,21 @@ class CollectionApiProvider(
 
     operator fun invoke(): CollectionApi =
         CollectionApi(jsonProvider(), httpClientProvider())
+}
+
+class PhotosApiProvider(
+    private val httpClientProvider: HttpClientProvider,
+    private val jsonProvider: JsonProvider
+) {
+
+    operator fun invoke(): PhotoApi =
+        PhotoApi(jsonProvider(), httpClientProvider())
+}
+
+class PhotosInteractorProvider(private val photosApiProvider: PhotosApiProvider) {
+
+    operator fun invoke(): PhotosInteractor =
+        PhotosInteractor(photosApiProvider())
 }
 
 class CollectionInteractorProvider(private val apiProvider: CollectionApiProvider) {
