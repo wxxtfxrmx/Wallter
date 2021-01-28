@@ -2,20 +2,30 @@ package com.wxxtfxrmx.wallter
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.wxxtfxrmx.wallter.collection.CollectionsFragment
-import com.wxxtfxrmx.wallter.photo.PhotosFragment
-import com.wxxtfxrmx.wallter.provider.*
-import com.wxxtfxrmx.wallter.viewmodel.WallterViewModelFactory
+import com.wxxtfxrmx.wallter.di.*
+import com.wxxtfxrmx.wallter.di.viewmodel.WallterViewModelFactory
+import com.wxxtfxrmx.wallter.feature.collection.CollectionsFragment
+import com.wxxtfxrmx.wallter.feature.photo.PhotosFragment
 import kotlinx.serialization.json.Json
 
 class MainActivity : AppCompatActivity(), Router {
+
+    private val userConverterProvider = UserConverterProvider()
+    private val photoUrlConverterProvider = PhotoUrlConverterProvider()
+    private val photoConverterProvider = PhotoConverterProvider(
+        photoUrlConverterProvider, userConverterProvider
+    )
+
+    private val collectionConverterProvider = CollectionConverterProvider(photoConverterProvider)
 
     private val jsonProvider = JsonProvider(provideJson())
     private val httpClientProvider = HttpClientProvider(jsonProvider)
     private val apiProvider = CollectionApiProvider(httpClientProvider, jsonProvider)
     private val photosApiProvider = PhotosApiProvider(httpClientProvider, jsonProvider)
-    private val collectionInteractorProvider = CollectionInteractorProvider(apiProvider)
-    private val photosInteractorProvider = PhotosInteractorProvider(photosApiProvider)
+    private val collectionInteractorProvider =
+        CollectionInteractorProvider(collectionConverterProvider, apiProvider)
+    private val photosInteractorProvider =
+        PhotosInteractorProvider(photoConverterProvider, photosApiProvider)
     val viewModelProviderFactory =
         WallterViewModelFactory(collectionInteractorProvider, photosInteractorProvider)
 
