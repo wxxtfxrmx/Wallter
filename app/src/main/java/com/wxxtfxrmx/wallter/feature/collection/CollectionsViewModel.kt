@@ -4,8 +4,8 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.wxxtfxrmx.wallter.feature.collection.interactor.CollectionInteractor
 import com.wxxtfxrmx.wallter.entity.Collection
+import com.wxxtfxrmx.wallter.feature.collection.interactor.CollectionInteractor
 import kotlinx.coroutines.launch
 
 class CollectionsViewModel(
